@@ -28,6 +28,16 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+		<style>
+			.line {
+				display: block;
+				padding: 0.1em;
+				opacity: 0.25;
+			}
+			.line.focus {
+				opacity: 1;
+			}
+		</style>
 
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
@@ -47,14 +57,30 @@
 						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
 					</p>
 				</section>
-
 				<section>
-					<h2>Hello There</h2>
-					<p>
-						reveal.js enables you to create beautiful interactive slide decks using HTML. This presentation will show you examples of what it can do.
-					</p>
-				</section>
 
+					<section data-transition="fade-out" data-transition-speed="fast">
+
+					<p class="fragment current" data-code-focus="1-5">
+						<pre><code data-trim data-noescape>
+defmodule Math do
+	def sum(a, b) do
+		<mark>a + b</mark>
+	end
+end
+						</code></pre>
+
+						</p>
+
+						<!-- Focuses on the first line. -->
+						<span class="fragment" data-code-focus="1">This focuses on a comment.</span>
+
+						<!-- Empty fragment: lines will be focused without content appearing. -->
+						<span class="fragment" data-code-focus="1-2"></span>
+
+
+					</section>
+				</section>
 				<!-- Example of nested vertical slides -->
 				<section>
 					<section>
@@ -113,10 +139,10 @@
 
 						```
 						<section data-markdown>
-						  ## Markdown support
+							## Markdown support
 
-						  Write content using inline or external Markdown.
-						  Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
+							Write content using inline or external Markdown.
+							Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
 						</section>
 						```
 					</script>
@@ -226,18 +252,18 @@
 					<h2>Pretty Code</h2>
 					<pre><code class="hljs" data-trim contenteditable>
 function linkify( selector ) {
-  if( supports3DTransforms ) {
+	if( supports3DTransforms ) {
 
-    var nodes = document.querySelectorAll( selector );
+		var nodes = document.querySelectorAll( selector );
 
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
+		for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
+			var node = nodes[i];
 
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
+			if( !node.className ) {
+				node.className += ' roll';
+			}
+		}
+	}
 }
 					</code></pre>
 					<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
@@ -400,7 +426,13 @@ Reveal.addEventListener( 'customevent', function() {
 					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/reveal-code-focus/code-focus.js',
+						async: true,
+						condition: function() { return !!document.querySelector( 'pre code' ); },
+						callback: function() { RevealCodeFocus(); }
+					},
 					{ src: 'plugin/zoom-js/zoom.js', async: true },
+
 					{ src: 'plugin/notes/notes.js', async: true }
 				]
 			});
