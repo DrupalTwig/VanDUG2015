@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Presentation Name</title>
+		<title>D7 to D8 Theme Crash Course</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
@@ -51,7 +51,7 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section data-background="lib/images/slide-bg-d8.png">
-					<h1>Presentation Name</h1>
+					<h1>D7 to D8 Theme Crash Course</h1>
 					<h3>Vancouver Drupal Users Group</h3>
 					<p>
 						<small>By Joel Pittet // d.o: joelpittet // <a href="http://twitter.com/joelpittet">@joelpittet</a><br>&amp; Leah Wagner // d.o: leahtard // <a href="http://twitter.com/leahamwagner">@leahamwagner</a></small>
@@ -477,7 +477,7 @@ Reveal.addEventListener( 'customevent', function() {
 					{ src: 'plugin/reveal-code-focus/code-focus.js',
 						async: true,
 						condition: function() { return !!document.querySelector( 'pre code' ); },
-						callback: function() { RevealCodeFocus(); }
+						callback: RevealCodeFocus
 					},
 					{ src: 'plugin/zoom-js/zoom.js', async: true },
 
