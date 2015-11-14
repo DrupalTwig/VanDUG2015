@@ -9,7 +9,7 @@ D7 Pipeline vs D8 Pipeline
 
 # Filename changes: (LW)
 
-THEME.info
+```THEME.info
 THEME.info.yml
 
 template.php
@@ -19,16 +19,19 @@ TEMPLATE.tpl.php
 TEMPLATE.html.twig
 
 theme-settings.php (SAME)
+```
 
 # Info (LW)
-THEME.info
+```THEME.info
 THEME.info.yml
-
+```
 # base themes (JP)
 (stable vs classy) vs (bartik vs seven) vs stark vs core (aka false, aka wild west)
+```
 base theme: false (core)  < stark
 base theme: stable (default)
 base theme: classy (this is if you want drupal classes and markup)
+```
 
 # Templates (JP)
 TEMPLATE.tpl.php
