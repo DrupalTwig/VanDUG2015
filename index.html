@@ -338,7 +338,7 @@ For Drupal's classes and markup.
 								THEME_HOOK()
 							</div>
 							<div class="block--right block--d8">
-                HOOK.html.twig
+				HOOK.html.twig
 							</div>
 						</div>
 
@@ -367,10 +367,10 @@ For Drupal's classes and markup.
    */
   ?>
   <?php foreach ($trees as $tree): ?>
-    <li>
-      <strong><?php print strtoupper($tree['type']) ?></strong>:
-      <?php print render($tree['branches']) ?>
-    </li>
+	<li>
+	  <strong><?php print strtoupper($tree['type']) ?></strong>:
+	  <?php print render($tree['branches']) ?>
+	</li>
   <?php endforeach ?>
   </ul>
 <?php endif ?>
@@ -384,15 +384,15 @@ For Drupal's classes and markup.
   <ul>
   {#
 
-    This is where we loop through
-    the list of trees.
+	This is where we loop through
+	the list of trees.
 
   #}
   {% for tree in trees %}
-    <li>
-      <strong>{{ tree.type|upper }}</strong>:
-      {{ tree.branches }}
-    </li>
+	<li>
+	  <strong>{{ tree.type|upper }}</strong>:
+	  {{ tree.branches }}
+	</li>
   {% endfor %}
   </ul>
 {% endif %}
@@ -400,6 +400,9 @@ For Drupal's classes and markup.
 </code></pre>
 
 						</div>
+						<aside class="notes">
+						3 types of markup: (1) Mustache brackets {{ }} redner content, like print render. (2) Mustache + % contain some sort of logic. (3) Mustache + # contains comments. Also Filtes: some argument to apply to the text you are rendering.
+						</aside>
 					</section>
 
 					<section>
@@ -463,17 +466,95 @@ $variables['my_attributes'] = $attributes;
 				<section data-background="lib/images/slide-bg-d8.png">
 					<section>
 						<h1>Libraries</h1>
+						<aside class="notes">
+						Relate this to the concept of the D7 libraries folder. We can now allow D8 themes to use this.
+						</aside>
 					</section>
-					<section data-markdown>
+					<section>
 						<h2>Libraries</h2>
-						<ul>
-							<li>THEME.libraries.yml</li>
-							<li>In templates `{{ attach_library('classy/node') }} `</li>
-							<li>drupal_add_js() && drupal_add_css() have been removed</li>
-							<li>https://www.drupal.org/node/2169605
-								https://www.drupal.org/node/2379475</li>
-						</ul>
-
+						<div class="block--left" data-markdown>
+<script type="text/template">
+```
+// THEME.info.yml
+# Scripts & Styles
+libraries:
+  - basic/base
+```
+</script>
+						</div>
+						<div class="block--right" data-markdown>
+<script type="text/template">
+```
+// THEME.libraries.yml
+base:
+  version: VERSION
+  css:
+	theme:
+	  css/default.css: {}
+	  css/layout.css: {}
+	  css/style.css: {}
+	  css/tabs.css: {}
+	  css/print.css: { media: print }
+  js:
+	js/modernizr.js: {}
+```
+</script>
+						</div>
+						<aside class="notes">
+						Instead of adding individual style and script files to the info file, you now define a library. Within a new libraries, you will add styles and scripts. The NEW concept here is that you can add multiple libraries that can be loaded only when needed.
+						</aside>
+					</section>
+					<section>
+						<h2>Libraries</h2>
+						@TODO: need to make it fit...
+						<div class="block--left block--d7" data-markdown>
+<script type="text/template">
+```
+function MYMODULE_page_build(&$page) {
+  if ($some_argumant == TRUE) {
+	drupal_add_css(drupal_get_path('module', 'mymodule') . '/css/mymmodule.css');
+	drupal_add_js(drupal_get_path('module', 'mymodule') . '/js/mymodule.js');
+  }
+}
+```
+</script>
+						</div>
+						<div class="block--right block--d8" data-markdown>
+<script type="text/template">
+```
+// THEME.info.yml
+# Scripts & Styles
+libraries:
+  - basic/base
+  - basic/bxslider
+```
+```
+// THEME.libraries.yml
+base:
+  version: VERSION
+  css:
+	theme:
+	  css/style.css: {}
+	  css/print.css: { media: print }
+bxslider:
+  version: VERSION
+  css:
+	theme:
+	  css/bxslider.css: {}
+  js:
+	js/bxslider.js: {}
+  dependancies:
+    - core/jquery
+```
+```
+// TWIG TPL
+{{ attach_library('basic/bxslider') }}
+```
+</script>
+						</div>
+						<aside class="notes">
+						xxx
+						</aside>
 					</section>
 				</section>
 
@@ -602,7 +683,7 @@ THEME_theme_suggestions_block(array &$suggestions, array $variables) (only works
 					</section>
 
 					<section>
-			      <h2>
+				  <h2>
 							<span class="fragment fade-out" data-fragment-index="0">BEM</span>
 							<span class="fragment fade-in" data-fragment-index="0">CEM</span>
 						</h2>
