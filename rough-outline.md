@@ -58,6 +58,9 @@ print drupal_render() -> {{ }}
 # Twig Magic (JP)
 Simplified - more detail go to source code!
 
+# Attirbutes (JP)
+
+The variables before and the Attribute class now.
 
 # MOAR BLOCKS (LW)
 ```
@@ -72,7 +75,7 @@ menu block
 DIDN'T CHANGE, still get up there (except doesn't have suggestions...)
 
 # Suggestions (LW)
-
+```
 D7
 in your THEME_prepreprocess_HOOK
 $variables['theme_hook_suggestions'][] = 'page__peanuts';
@@ -81,7 +84,8 @@ D8
 HOOK_theme_suggestions_HOOK
 mymodule_theme_suggestions_block(array $variables) (only works in MODULES)
 HOOK_theme_suggestions_HOOK_alter()
-THEME_theme_suggestions_block(array &$suggestions, array $variables) (only works in MODULES or THEME)
+THEME_theme_suggestions_block(array &$suggestions, array $variables) (only works in MODULES or THEME).
+```
 
 # Libraries (JS/CSS assets) (LW)
 
@@ -98,7 +102,7 @@ https://www.drupal.org/node/2379475
 # BEM
 
 # Attachements (JP)
-
+```
 D7
     hook_page_build()
     hook_page_alter()
@@ -108,6 +112,7 @@ D8
     hook_page_attachments_alter()
     hook_page_top()
     hook_page_bottom()
+```
 
 https://www.drupal.org/node/2357755
 
