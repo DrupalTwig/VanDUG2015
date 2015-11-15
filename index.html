@@ -297,12 +297,56 @@ For Drupal's classes and markup.
 				</section>
 
 				<!-- Section: Templates -->
-				<section data-background="lib/images/slide-bg-d8-jp.png">
+				<section data-background="lib/images/slide-bg-d8.png">
 					<section>
 						<h1>Templates</h1>
 					</section>
-					<section>
+					<section data-background="lib/images/slide-bg-d8-jp.png">
 						<h2>Templates</h2>
+
+						<div>
+
+							<div class="block--left block--d7">
+								<code>TEMPLATE.tpl.php</code>
+							</div>
+							<div class="block--right block--d8">
+								<code>TEMPLATE.html.twig</code>
+							</div>
+						</div>
+
+						<div class="fragment">
+							<div class="block--left block--d7">
+								<code>node.tpl.php</code>
+								<code>field.tpl.php</code>
+							</div>
+							<div class="block--right block--d8">
+								<code>node.html.twig</code>
+								<code>field.html.twig</code>
+							</div>
+						</div>
+
+						<div class="fragment">
+							<div class="block--left block--d7">
+								THEME_HOOK()
+							</div>
+							<div class="block--right block--d8">
+                HOOK.html.twig
+							</div>
+						</div>
+
+						<div class="fragment">
+							<div class="block--left block--d7">
+								THEME_status_messages()
+							</div>
+							<div class="block--right block--d8">
+								status-messages.html.twig
+							</div>
+						</div>
+
+					</section>
+
+					<section data-background="lib/images/slide-bg-d8.png">
+						<h2>Twig Syntax</h2>
 						<div class="block--left block--d7" data-markdown>
 <script type="text/template">
 ```php
@@ -360,6 +404,50 @@ For Drupal's classes and markup.
 						</div>
 					</section>
 
+					<section data-background="lib/images/slide-bg-d8-jp.png">
+						<h2>Attributes</h2>
+						<div class="block--left block--d7" data-markdown>
+							<script type="text/template">
+```php
+$classes = array(
+  'list',
+  'of',
+  'classes',
+);
+$classes = 'list of classes';
+$attributes = ' class="some--bem"';
+$attributes_array = array(
+  'class' => $classes
+);
+
+```
+```php
+<div<?php print drupal_attributes($attirbutes); ?>>
+```
+</script>
+						</div>
+						<div class="block--right block--d8" data-markdown>
+<script type="text/template">
+```php
+$attributes = new Attribute([
+  'checked' => TRUE,
+  'id' => 'stop',
+  'class' => ['red', 'blue'],
+]);
+$variables['my_attributes'] = $attributes;
+```
+```twig
+<div{{ my_attributes }}>
+<div{{ my_attributes
+	.addClass('yellow')
+	.removeClass('red')
+	.setAttribute('id', 'full-stop')|without('checked') }}>
+<input{{ my_attributes.checked }}>
+```
+</script>
+						</div>
+					</section>
+
 				</section>
 
 
@@ -398,12 +486,12 @@ For Drupal's classes and markup.
 
 
 				<!-- Section: Theme Hooks -->
-				<section data-background="lib/images/slide-bg-d8.png">
+				<section data-background="lib/images/slide-bg-d8-jp.png">
 					<section>
 						<h1>Theme Hooks</h1>
 					</section>
 					<section>
-						<h2>Theme Function &amp; Template Changes</h2>
+						<h2>Theme Function to Template Changes</h2>
 						<ul>
 							<li>xxx</li>
 							<li>xxx</li>
@@ -431,8 +519,8 @@ For Drupal's classes and markup.
 					<section>
 						<h2>Blocks</h2>
 						<ul>
-							<li>xxx</li>
-							<li>xxx</li>
+							<li>Branding Block</li>
+							<li>Syste</li>
 							<li>xxx</li>
 							<li>xxx</li>
 						</ul>

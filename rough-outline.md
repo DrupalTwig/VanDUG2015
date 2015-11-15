@@ -34,21 +34,20 @@ base theme: classy (this is if you want drupal classes and markup)
 ```
 
 # Templates (JP)
+```
 TEMPLATE.tpl.php
 TEMPLATE.html.twig
+```
 
 # Theme function & template changes (JP)
+```
 D7         D8
 theme_* -> *.html.twig
 THEME_status_messages() -> status-messages.html.twig
 
 D7              D8
 node.tpl.php -> node.html.twig
-
-# MOAR BLOCKS (LW)
-branding block
-system messages block
-menu block
+```
 
 # Twig Syntax (LW)
 print drupal_render() -> {{ }}
@@ -58,6 +57,16 @@ print drupal_render() -> {{ }}
 
 # Twig Magic (JP)
 Simplified - more detail go to source code!
+
+
+# MOAR BLOCKS (LW)
+```
+branding block
+system messages block
+menu block
+```
+
+
 
 # Preprocess (LW)
 DIDN'T CHANGE, still get up there (except doesn't have suggestions...)
