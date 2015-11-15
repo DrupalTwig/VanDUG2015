@@ -456,14 +456,16 @@ $variables['my_attributes'] = $attributes;
 					<section>
 						<h1>Libraries</h1>
 					</section>
-					<section>
+					<section data-markdown>
 						<h2>Libraries</h2>
 						<ul>
-							<li>xxx</li>
-							<li>xxx</li>
-							<li>xxx</li>
-							<li>xxx</li>
+							<li>THEME.libraries.yml</li>
+							<li>In templates `{{ attach_library('classy/node') }} `</li>
+							<li>drupal_add_js() && drupal_add_css() have been removed</li>
+							<li>https://www.drupal.org/node/2169605
+								https://www.drupal.org/node/2379475</li>
 						</ul>
+
 					</section>
 				</section>
 
@@ -549,6 +551,7 @@ And on all render arrays like D7
 						<h2>Preprocess</h2>
 						DIDN'T CHANGE!
 						<div class="fragment">(except doesn't have suggestions...)</div>
+					</section>
 
 					<section>
 						<h2>Suggestions</h2>
@@ -627,18 +630,66 @@ THEME_theme_suggestions_block(array &$suggestions, array $variables) (only works
 
 
 				<!-- Section: Auto-Escaping -->
-				<section data-background="lib/images/slide-bg-d8.png">
+				<section data-background="lib/images/slide-bg-d8-jp.png">
 					<section>
 						<h1>Auto-Escaping</h1>
 					</section>
 					<section>
 						<h2>Auto-Escaping</h2>
-						<ul>
-							<li>xxx</li>
-							<li>xxx</li>
-							<li>xxx</li>
-							<li>xxx</li>
-						</ul>
+						<small>The user decides to set his first name to<br>
+						<code class="html">&lt;script&gt;alert(&apos;I CAN HAZ UR SITE&apos;)&lt;/script&gt;</code></small>
+						<div class="block--left block--d7">
+							<div data-markdown>
+								<script type="text/template">
+```php
+<?php
+global $user;
+$user_wrapper = entity_metadata_wrapper('user', $user->uid);
+$name = $wrapper->field_first_name->value();
+?>
+First name: <?php print $name ?>!
+```
+								</script>
+							</div>
+							<div class="fragment" data-markdown>
+								Escaped first name:
+
+								<script type="text/template">
+								```php
+								<?php print check_plain($name) ?>!```
+								</script>
+							</div>
+						</div>
+
+
+						<div class="block--right block--d8 fragment">
+							<div data-markdown>
+								<script type="text/template">
+```twig
+{# Escaped by default! #}
+{{ user.field_first_name.value }}
+```
+								</script>
+							</div>
+							<div class="fragment">
+							OR if you need the markup or know it's previously sanitized.
+
+								<div data-markdown><script type="text/template">
+```php
+// Wrapped in some object that implements MarkupInterface.
+$variables['first_name'] = Markup::create($user->field_first_name->value);
+// Or a render array (this will implicitly XSS admin filter and is recommeneded.)
+$variables['first_name'] = ['#markup' => $user->field_first_name->value];
+```
+```twig
+{# Explicitly unescaped! #}
+{{ first_name }}
+```
+								</script>
+							</div>
+							</div>
+						</div>
+
 					</section>
 				</section>
 
