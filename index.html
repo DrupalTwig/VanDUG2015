@@ -464,7 +464,9 @@ $variables['my_attributes'] = $attributes;
 						</div>
 					</section>
 
-<section>
+<section data-markdown>
+<script type="text/template">
+```
 
 			@TODO Do's and don't of attributes
 				<div{{ attributes }}></div>
@@ -478,6 +480,9 @@ $variables['my_attributes'] = $attributes;
 				<div{{ content_attributes }}></div>
 
 				<div{% set attrs = html_attributes(content_attributes) %}></div>
+
+```
+</script>
 
 </section>
 				</section>
