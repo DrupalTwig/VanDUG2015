@@ -457,14 +457,33 @@ $variables['my_attributes'] = $attributes;
 <div{{ my_attributes
 	.addClass('yellow')
 	.removeClass('red')
-	.setAttribute('id', 'full-stop')|without('checked') }}>
+	.setAttribute('id', 'full-stop') }}>
 <input{{ my_attributes.checked }}>
 ```
 </script>
 						</div>
 					</section>
 
+<section>
+
+			@TODO Do's and don't of attributes
+				<div{{ attributes }}></div>
+				<div></div>
+				<div {{ attributes }}></div>
+				<div ></div>
+
+				<div {{ my_attributes.addClass() }}></div>
+				<div{{ attributes }}></div>
+				<div{{ title_attributes }}></div>
+				<div{{ content_attributes }}></div>
+
+				<div{% set attrs = html_attributes(content_attributes) %}></div>
+
+</section>
 				</section>
+
+
+
 
 
 				<!-- Section: Libraries -->
@@ -513,8 +532,8 @@ base:
 ```
 function MYMODULE_page_build(&$page) {
   $path = drupal_get_path('module', 'mymodule');
-  drupal_add_css($path . '/css/mymmodule.css');
-  drupal_add_js($path . '/js/mymodule.js');
+  drupal_add_css($path . '/mymmodule.css');
+  drupal_add_js($path . '/mymodule.js');
   drupal_add_library('system', 'jquery.bbq');
 }
 ```
