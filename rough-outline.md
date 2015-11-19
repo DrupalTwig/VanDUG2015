@@ -89,6 +89,7 @@ THEME_theme_suggestions_block(array &$suggestions, array $variables) (only works
 
 # Libraries (JS/CSS assets) (LW)
 
+```
 THEME.libraries.yml
 {{ attach_library('classy/node') }}
 
@@ -96,10 +97,11 @@ drupal_add_js()
 drupal_add_css() don't exist
 https://www.drupal.org/node/2169605
 https://www.drupal.org/node/2379475
+```
 
 # SMACCS
 
-# BEM
+# BEM/CEM
 
 # Attachements (JP)
 ```
