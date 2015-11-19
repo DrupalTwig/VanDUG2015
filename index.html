@@ -118,7 +118,7 @@
 						</small>
 					</div>
 					<div class="block--right">
-						<img src="lib/images/pic-joel.jpg" style="border-radius:50%; border: 3px solid #fff; max-width:80px;height:auto;display:inline-block;float:left;margin-right:20px;" />
+						<img src="lib/images/pic-joel.jpg" style="border-radius:50%; max-width:80px;height:auto;display:inline-block;float:left;margin-right:20px;" />
 						<h4 style="display:inline-block;float:left;line-height:120px;">Joël Pittet</h4>
 						<small>
 
@@ -132,16 +132,7 @@
 					</div>
 
 				</section>
-				<section data-background="lib/images/slide-bg-d8.png">
-					<h2>The Why &amp; How</h2>
-					<ul>
-						<li>New D8 theme layer powered by Twig</li>
-						<li>xxx</li>
-						<li>xxx</li>
-						<li>xxx</li>
-						<li>xxx</li>
-					</ul>
-				</section>
+
 				<section data-background="lib/images/slide-bg-d8.png">
 					<h2>The Highlights</h2>
 					<div class="block--left">
@@ -222,6 +213,7 @@
 
 
 						<div class="block--left block--d7">
+						<small>THEME.info</small>
 <pre><code data-trim data-noescape class="ini">
 name = Basic
 description = HTML5 and SASS theme.
@@ -244,6 +236,7 @@ settings[basic_tabs] = 1
 </code></pre>
 						</div>
 						<div class="block--right block--d8">
+						<small>THEME.info.yml</small>
 <pre><code data-trim data-noescape class="yml">
 name: Basic
 description: HTML5 and SASS theme.
@@ -262,7 +255,6 @@ libraries:
 
 settings:
   basic_tabs: 1
-  clear_registry: false
 </code></pre>
 						</div>
 
@@ -355,6 +347,8 @@ For Drupal's classes and markup.
 
 					<section data-background="lib/images/slide-bg-d8.png">
 						<h2>Twig Syntax</h2>
+						- Concatination
+						- Whitespace modifiers
 						<div class="block--left block--d7" data-markdown>
 <script type="text/template">
 ```php
