@@ -378,15 +378,15 @@ For Drupal's classes and markup.
   <ul>
   {#
 
-	This is where we loop through
-	the list of trees.
+  This is where we loop through
+  the list of trees.
 
   #}
   {% for tree in trees %}
-	<li>
-	  <strong>{{ tree.type|upper }}</strong>:
-	  {{ tree.branches }}
-	</li>
+  <li>
+    <strong>{{ tree.type|upper }}</strong>:
+    {{ tree.branches }}
+  </li>
   {% endfor %}
   </ul>
 {% endif %}
