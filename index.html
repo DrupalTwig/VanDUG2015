@@ -136,22 +136,22 @@
 				<section data-background="lib/images/slide-bg-d8.png">
 					<h2>What we will be covering</h2>
 					<div class="block--left">
-						<ul class="item-list">
-							<li>The Pipeline</li>
-							<li>Filename Changes</li>
-							<li>Info File</li>
-							<li>Base Themes</li>
-							<li>Templates</li>
-							<li>Theme Functions &amp; Template Changes</li>
-						</ul>
+						<dl>
+							<dt>THE PIPELINE</dt><dd><small></small></dd>
+							<dt>FILE CHANGES</dt><dd><small>Name changes and the new info file</small></dd>
+							<dt>BASE THEMES</dt><dd><small>Classy, Stable &amp; Strak</small></dd>
+							<dt>TEMPLATES</dt><dd><small>php template > Twig!</small></dd>
+							<dt>LIBRARIES</dt><dd><small>Libraries and attached assets</small></dd>
+						</dl>
 					</div>
 					<div class="block--right">
-						<ul class="item-list">
-							<li>xxx</li>
-							<li>xxx</li>
-							<li>xxx</li>
-							<li>xxx</li>
-						</ul>
+						<dl>
+    						<dt>BLOCKS</dt><dd><small>New deafult theme blocks</small></dd>
+							<dt>THEME HOOKS</dt><dd><small>New templates and suggestions</small></dd>
+							<dt>SMACSS &amp; BEM</dt><dd><small>Folder structure and naming convetions</small></dd>
+							<dt>DEBUG</dt><dd><small></small></dd>
+							<dt>AUTO-ESCAPING</dt><dd><small></small></dd>
+						</dl>
 					</div>
 				</section>
 
@@ -234,7 +234,6 @@ regions[footer] = Footer
 ; Stylesheets
 stylesheets[all][] = css/default.css
 stylesheets[print][] = css/print.css
-
 ; Scripts
 scripts[] = js/build/scripts.js
 
@@ -293,7 +292,7 @@ base theme: stable
 Default of any theme that doesn't opt-out and Classy.
 </div>
 <div class="fragment" data-markdown>
-**Bartik & Seven**
+###Bartik & Seven
 ```
 base theme: classy
 ```
@@ -398,6 +397,7 @@ For Drupal's classes and markup.
 </code></pre>
 
 						</div>
+						<small>Strings {{ }}, Operations {% %}, Filters |, Comments {# #}</small>
 						<aside class="notes">
 						3 types of markup: (1) Mustache brackets {{ }} redner content, like print render. (2) Mustache + % contain some sort of logic. (3) Mustache + # contains comments. Also Filtes: some argument to apply to the text you are rendering.
 						</aside>
@@ -405,9 +405,30 @@ For Drupal's classes and markup.
 
 					<section data-background="lib/images/slide-bg-d8.png">
 						<h2>Twig Syntax</h2>
-						- Concatination
-						- Whitespace modifiers
-						- link to twig
+						<div class="block--left">
+						<small>Concatenation (~)</small>
+<pre><code data-trim class="twig">				
+{% set greeting = 'Hello ' %}
+{% set name = 'Drupalists' %}
+
+{{ greeting ~ name|lower }}  
+
+{# Hello drupalists #}
+</code></pre>
+						</div>
+						<div class="block--right">
+						<small>Whitespace Control (-)</small>
+<pre><code data-trim class="twig">				
+{% set value = 'no spaces' %}
+{#- No leading/trailing whitespace -#}
+{%- if true -%}
+    {{- value -}}
+{%- endif -%}
+
+{# output 'no spaces' #}
+</code></pre>
+						</div>
+						<p><small>Read more: <a href="http://twig.sensiolabs.org/doc/templates.html">http://twig.sensiolabs.org/doc/templates.html</a></small></p>
 					</section>
 
 					<section>
@@ -631,12 +652,58 @@ And on all render arrays like D7
 					</section>
 					<section>
 						<h2>Blocks</h2>
-						<ul>
-							<li>Branding Block (Logo, Site name, site slogan variables)</li>
-							<li class="fragment">System Messages Block</li>
-							<li class="fragment">Menu Block</li>
-						</ul>
+						<div style="overflow:hidden;">
+						<div class="block--left">
+							<p>Branding Block</p>
+						</div>
+						<div class="block--right" data-markdown>
+<script type="text/template">
+```
+<div class="block-system-branding-block">
+  <a href="#"class="site-logo">
+    <img src="/logo.svg" alt="Home" />
+  </a>
+  <div class="site-name"><a href="#">Site name</a></div>
+</div>
+```
+</script>
+						</div>
+						</div>
+						<div class="fragment" style="overflow:hidden;">
+						<div class="block--left">
+							<p>System Messages Block<br><br></p>
+						</div>
+						<div class="block--right" data-markdown>
+<script type="text/template">
+```
+<div class="messages messages--error">
+  <div role="alert">Please enter some keywords.</div>
+</div>
+```
+</script>
+						</div>
+						</div>
+						<div class="fragment" style="overflow:hidden;">
+						<div class="block--left">
+							<p>Menu Block</p>
+						</div>
+						<div class="block--right" data-markdown>
+<script type="text/template">
+```
+<nav role="navigation" class="menu--main">
+  <ul class="menu">
+    <li class="menu-item"><a href="#">Home</a></li>
+  </ul>
+</nav>
+```
+</script>
+						</div>
+						</div>
 					</section>
+					<aside class="notes">
+						- D7 defined in page.tpl or create your own blocks
+						- simplified markup
+					</aside>
 				</section>
 
 				<!-- Section: Theme Hooks -->
