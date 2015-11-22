@@ -129,6 +129,9 @@ body {
   display: block;
   margin-left: 40px; }
 
+.reveal ul.item-list {
+  margin: 0 0 0 1em; }
+
 .reveal dt {
   font-weight: bold; }
 
