@@ -161,9 +161,9 @@
 						<p>Uppercase words are replaced as follows:</p>
 							<dl class="item-list">
 								<dt>THEME</dt>
-								<dd>Name of your theme <br><small>eg. basic/omega/my_amazing_theme</small></dd>
+								<dd>Name of your theme <br><small>eg. basic/omega/custom_theme</small></dd>
 								<dt>MODULE</dt>
-								<dd>Name of your module <br><small>eg. panels/context/my_custom_module</small></dd>
+								<dd>Name of your module <br><small>eg. panels/context/custom_module</small></dd>
 								<dt>HOOK</dt>
 								<dd>Name of a theme hook aka template file. <br><small>eg. field/page/node/item_list</small></dd>
 							</dl>
@@ -464,9 +464,9 @@ $variables['my_attributes'] = $attributes;
 ```twig
 <div{{ my_attributes }}>
 <div{{ my_attributes
-	.addClass('yellow')
-	.removeClass('red')
-	.setAttribute('id', 'full-stop') }}>
+  .addClass('yellow')
+  .removeClass('red')
+  .setAttribute('id', 'full-stop') }}>
 <input{{ my_attributes.checked }}>
 ```
 </script>
@@ -477,27 +477,24 @@ $variables['my_attributes'] = $attributes;
 <script type="text/template">
 ```
 
-			@TODO Do's and don't of attributes
-				<div{{ attributes }}></div>
-				<div></div>
-				<div {{ attributes }}></div>
-				<div ></div>
+@TODO Do's and don't of attributes
+<div{{ attributes }}></div>
+<div></div>
+<div {{ attributes }}></div>
+<div ></div>
 
-				<div {{ my_attributes.addClass() }}></div>
-				<div{{ attributes }}></div>
-				<div{{ title_attributes }}></div>
-				<div{{ content_attributes }}></div>
+<div {{ my_attributes.addClass() }}></div>
+<div{{ attributes }}></div>
+<div{{ title_attributes }}></div>
+<div{{ content_attributes }}></div>
 
-				<div{% set attrs = html_attributes(content_attributes) %}></div>
+<div{% set attrs = html_attributes(content_attributes) %}></div>
 
 ```
 </script>
 
 </section>
 				</section>
-
-
-
 
 
 				<!-- Section: Libraries -->
@@ -557,9 +554,9 @@ global:
 <script type="text/template">
 ```
 function MODULE_page_build(&$page) {
-  $path = drupal_get_path('module', 'mymodule');
-  drupal_add_css($path . '/mymmodule.css');
-  drupal_add_js($path . '/mymodule.js');
+  $path = drupal_get_path('module', 'MODULE');
+  drupal_add_css($path . '/MODULE.css');
+  drupal_add_js($path . '/MODULE.js');
   drupal_add_library('system', 'jquery.bbq');
 }
 ```
@@ -708,9 +705,9 @@ $variables['theme_hook_suggestions'][] = 'page__peanuts';
 						<div class="block--right block--d8" data-markdown>
 ```php
 HOOK_theme_suggestions_HOOK
-mymodule_theme_suggestions_block(array $variables) (only works in MODULES)
+eg. menu_block_theme_suggestions_block(array $variables) (only works in modules)
 HOOK_theme_suggestions_HOOK_alter()
-THEME_theme_suggestions_block(array &$suggestions, array $variables) (only works in MODULES or THEME).
+eg. basic_theme_suggestions_block_alter(array &$suggestions, array $variables) (works in modules or themes).
 ```
 </script>
 						</div>
