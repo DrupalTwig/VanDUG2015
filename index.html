@@ -414,9 +414,26 @@ For Drupal's classes and markup.
 
 					<section data-background="lib/images/slide-bg-d8.png">
 						<h2>Twig Syntax</h2>
-						- Concatination
-						- Whitespace modifiers
-						- link to twig
+						<ul>
+							<li>Concatination
+<pre class="fragment"><code class="twig" data-trim data-noescape>
+{% set words = 'birds' %}
+{{ 'join' ~ ' the ' ~ words }}
+</code></pre>
+							</li>
+							<li class="fragment">Whitespace modifiers
+							<pre class="fragment"><code class="twig" data-trim data-noescape>
+{% set space = 'after removed' -%}
+
+{{- 'before' ~ ' and ' ~ 'after' -}}
+{% spaceless %}  a bunch of white
+
+space in them middle  {% endspaceless %}
+</code></pre>
+</li>
+
+						</ul>
+						<p class="fragment"><small>More details at: <a href="http://twig.sensiolabs.org/documentation">http://twig.sensiolabs.org/documentation</a></small></p>
 					</section>
 
 					<section>
