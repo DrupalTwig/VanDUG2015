@@ -134,27 +134,41 @@
 				</section>
 
 				<section data-background="lib/images/slide-bg-d8.png">
-					<h2>What we will be covering</h2>
-					<div class="block--left">
-						<ul class="item-list">
-							<li>The Pipeline</li>
-							<li>Filename Changes</li>
-							<li>Info File</li>
-							<li>Base Themes</li>
-							<li>Templates</li>
-							<li>Theme Functions &amp; Template Changes</li>
-						</ul>
-					</div>
-					<div class="block--right">
-						<ul class="item-list">
-							<li>xxx</li>
-							<li>xxx</li>
-							<li>xxx</li>
-							<li>xxx</li>
-						</ul>
-					</div>
-				</section>
+					<section>
+						<h2>What we will be covering</h2>
+						<div class="block--left">
+							<ul class="item-list">
+								<li>The Pipeline</li>
+								<li>Filename Changes</li>
+								<li>Info File</li>
+								<li>Base Themes</li>
+								<li>Templates</li>
+								<li>Theme Functions &amp; Template Changes</li>
+							</ul>
+						</div>
+						<div class="block--right">
+							<ul class="item-list">
+								<li>xxx</li>
+								<li>xxx</li>
+								<li>xxx</li>
+								<li>xxx</li>
+							</ul>
+						</div>
+					</section>
 
+					<section>
+						<h2>Conventions</h2>
+						<p>Uppercase words are replaced as follows:</p>
+							<dl class="item-list">
+								<dt>THEME</dt>
+								<dd>Name of your theme <br><small>eg. basic/omega/my_amazing_theme</small></dd>
+								<dt>MODULE</dt>
+								<dd>Name of your module <br><small>eg. panels/context/my_custom_module</small></dd>
+								<dt>HOOK</dt>
+								<dd>Name of a theme hook aka template file. <br><small>eg. field/page/node/item_list</small></dd>
+							</dl>
+					</section>
+				</section>
 
 				<!-- Section: Pipeline -->
 				<section data-background="lib/images/slide-bg-d8-jp.png">
@@ -232,7 +246,7 @@ regions[content] = Content
 regions[footer] = Footer
 
 ; Stylesheets
-stylesheets[all][] = css/default.css
+stylesheets[all][] = css/style.css
 stylesheets[print][] = css/print.css
 
 ; Scripts
@@ -496,28 +510,40 @@ $variables['my_attributes'] = $attributes;
 					</section>
 					<section>
 						<h2>Libraries</h2>
-						<div class="block--left" data-markdown>
+						<div class="block--left block--d7" data-markdown>
+						<small>THEME.info.yml</small>
+<script type="text/template">
+```
+; Stylesheets
+stylesheets[all][] = css/style.css
+stylesheets[print][] = css/print.css
+
+; Scripts
+scripts[] = js/build/scripts.js
+```
+</script>
+						</div>
+						<div class="block--right block--d8" data-markdown>
 						<small>THEME.info.yml</small>
 <script type="text/template">
 ```
 # Scripts & Styles
 libraries:
-  - basic/global
+  - THEME/global
 ```
 </script>
 						</div>
-						<div class="block--right" data-markdown>
+						<div class="block--right block--d8" data-markdown>
 						<small>THEME.libraries.yml</small>
 <script type="text/template">
 ```
 global:
-  version: VERSION
   css:
-	theme:
-	  css/style.css: {}
-	  css/print.css: { media: print }
+    theme:
+      css/style.css: {}
+      css/print.css: { media: print }
   js:
-	js/modernizr.js: {}
+    js/modernizr.js: {}
 ```
 </script>
 						</div>
@@ -530,7 +556,7 @@ global:
 						<div class="block--d7" data-markdown>
 <script type="text/template">
 ```
-function MYMODULE_page_build(&$page) {
+function MODULE_page_build(&$page) {
   $path = drupal_get_path('module', 'mymodule');
   drupal_add_css($path . '/mymmodule.css');
   drupal_add_js($path . '/mymodule.js');
@@ -545,33 +571,31 @@ function MYMODULE_page_build(&$page) {
 					</section>
 					<section>
 						<h2>Libraries</h2>
-						<div class="block--left block--d8" data-markdown>
+						<div class="block--left" data-markdown>
 <script type="text/template">
 <small>THEME.info.yml</small>
 ```
 # Scripts & Styles
 libraries:
-  - basic/global
-  - basic/bxslider
+  - THEME/global
+  - THEME/bxslider
 ```
 </script>
 						</div>
 
-                        <div class="block--right block--d8" data-markdown>
+                        <div class="block--right" data-markdown>
 <script type="text/template">
 <small>THEME.libraries.yml</small>
 ```
 global:
-  version: VERSION
   css:
     theme:
       css/style.css: {}
       css/print.css: { media: print }
 bxslider:
-  version: VERSION
   css:
-  theme:
-    css/bxslider.css: {}
+    theme:
+      css/bxslider.css: {}
   js:
     js/bxslider.js: {}
   dependancies:
@@ -718,7 +742,6 @@ THEME_theme_suggestions_block(array &$suggestions, array $variables) (only works
 <small>THEME.libraries.yml</small>
 ```
 global:
-  version: VERSION
   css:
     base:
       css/normalize.css: {}
