@@ -255,7 +255,7 @@ regions:
 
 # Scripts & Styles
 libraries:
-  - basic/base
+  - basic/global
 </code></pre>
 						</div>
 
@@ -502,7 +502,7 @@ $variables['my_attributes'] = $attributes;
 ```
 # Scripts & Styles
 libraries:
-  - basic/base
+  - basic/global
 ```
 </script>
 						</div>
@@ -510,7 +510,7 @@ libraries:
 						<small>THEME.libraries.yml</small>
 <script type="text/template">
 ```
-base:
+global:
   version: VERSION
   css:
 	theme:
@@ -551,7 +551,7 @@ function MYMODULE_page_build(&$page) {
 ```
 # Scripts & Styles
 libraries:
-  - basic/base
+  - basic/global
   - basic/bxslider
 ```
 </script>
@@ -561,19 +561,19 @@ libraries:
 <script type="text/template">
 <small>THEME.libraries.yml</small>
 ```
-base:
+global:
   version: VERSION
   css:
-	theme:
-	  css/style.css: {}
-	  css/print.css: { media: print }
+    theme:
+      css/style.css: {}
+      css/print.css: { media: print }
 bxslider:
   version: VERSION
   css:
-	theme:
-	  css/bxslider.css: {}
+  theme:
+    css/bxslider.css: {}
   js:
-	js/bxslider.js: {}
+    js/bxslider.js: {}
   dependancies:
     - core/jquery
 ```
@@ -717,7 +717,7 @@ THEME_theme_suggestions_block(array &$suggestions, array $variables) (only works
 <script type="text/template">
 <small>THEME.libraries.yml</small>
 ```
-base:
+global:
   version: VERSION
   css:
     base:
