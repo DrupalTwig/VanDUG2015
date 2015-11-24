@@ -715,16 +715,21 @@ And on all render arrays like D7
 							in your ```THEME_prepreprocess_HOOK```
 							<script type="text/template">
 ```php
-$variables['theme_hook_suggestions'][] = 'page__peanuts';
+$variables['theme_hook_suggestions'][]
+  = 'page__peanuts';
 ```
 </script>
 						</div>
 						<div class="block--right block--d8" data-markdown>
 ```php
 HOOK_theme_suggestions_HOOK
-eg. menu_block_theme_suggestions_block(array $variables) (only works in modules)
+eg. menu_block_theme_suggestions_block(array $variables)
+(only works in modules)
+
 HOOK_theme_suggestions_HOOK_alter()
-eg. basic_theme_suggestions_block_alter(array &$suggestions, array $variables) (works in modules or themes).
+eg. basic_theme_suggestions_block_alter(
+  array &$suggestions, array $variables)
+(works in modules or themes).
 ```
 </script>
 						</div>
@@ -834,19 +839,25 @@ global:
 				<section data-background="lib/images/slide-bg-d8-jp.png">
 					<section>
 						<h1>Auto-Escaping</h1>
+						<img src="lib/images/escape.jpg">
+
 					</section>
 					<section>
 						<h2>Auto-Escaping</h2>
-						<small>The user decides to set his first name to<br>
-						<code class="html">&lt;script&gt;alert(&apos;I CAN HAZ UR SITE&apos;)&lt;/script&gt;</code></small>
+						<small style="margin-bottom: 0; vertical-align: bottom;">The user decides to set his first name to:</small>
+						<pre><code class="html">&lt;script&gt;alert(&apos;I CAN HAZ UR SITE&apos;)&lt;/script&gt;</code></pre>
+
 						<div class="block--left block--d7">
 							<div data-markdown>
 								<script type="text/template">
 ```php
 <?php
 global $user;
-$user_wrapper = entity_metadata_wrapper('user', $user->uid);
-$name = $wrapper->field_first_name->value();
+$account = entity_metadata_wrapper(
+  'user', $user->uid);
+$name = $account
+  ->field_first_name
+  ->value;
 ?>
 First name: <?php print $name ?>!
 ```
@@ -872,24 +883,63 @@ First name: <?php print $name ?>!
 ```
 								</script>
 							</div>
-							<div class="fragment">
-							OR if you need the markup or know it's previously sanitized.
-
-								<div data-markdown><script type="text/template">
-```php
-// Wrapped in some object that implements MarkupInterface.
-$variables['first_name'] = Markup::create($user->field_first_name->value);
-// Or a render array (this will implicitly XSS admin filter and is recommeneded.)
-$variables['first_name'] = ['#markup' => $user->field_first_name->value];
-```
-```twig
-{# Explicitly unescaped! #}
-{{ first_name }}
+							<div data-markdown class="fragment">>
+								<script type="text/template">
+```html
+&lt;script&gt;alert(&#039;I CAN HAZ
+ UR SITE&#039;)&lt;/script&gt;
 ```
 								</script>
 							</div>
+
+						</div>
+
+
+					</section>
+					<section>
+						<h2>Un-escaping</h2>
+
+
+
+						<small>You need the variable's markup or know it's previously sanitized user input.</small>
+						<div class="block--left">
+							<img src="lib/images/unescape.jpg">
+						</div>
+						<div class="block--right block--d8">
+							<div  class="fragment">
+								<div data-markdown>
+<script type="text/template">
+```php
+// Wrapped in some object that
+// implements MarkupInterface.
+$variables['first'] = Markup::create(
+  $user->field_first_name->value);
+// Or a render array (this will
+// implicitly XSS admin filter
+// and is recommeneded.)
+$variables['first'] = [
+  '#markup' => $user->field_first_name
+    ->value
+];
+```
+```twig
+{# Explicitly unescaped! #}
+{{ first }}
+```
+</script>
+								</div>
+								<div class="fragment" data-markdown>
+<script type="text/template">
+
+```twig
+{# Not recommended but possible, too #}
+{{ user.field_first_name.value|raw }}
+```
+</script>
+								</div>
 							</div>
 						</div>
+
 
 					</section>
 				</section>
