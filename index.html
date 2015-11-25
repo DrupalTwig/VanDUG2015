@@ -714,11 +714,18 @@ And on all render arrays like D7
 						<div class="block--left block--d7" data-markdown>
 							in your ```THEME_prepreprocess_HOOK```
 							<script type="text/template">
+              <small>template.php</small>
 ```php
-$variables['theme_hook_suggestions'][]
-  = 'page__peanuts';
+function THEME_preprocess_block(&$vars) {
+  // If statement with logic...
+  $vars['theme_hook_suggestions'][] =
+    'block__bean__' . $vars['elements']['bean'];
+  // Close
+}
 ```
+<small>Allows us to use block--bean--bean-type.tpl.php</small>
 </script>
+
 						</div>
 						<div class="block--right block--d8" data-markdown>
 ```php
