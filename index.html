@@ -764,34 +764,42 @@ And on all render arrays like D7
 						<h2>Suggestions</h2>
 
 						<div class="block--left block--d7" data-markdown>
-							in your ```THEME_prepreprocess_HOOK```
-							<script type="text/template">
-              <small>template.php</small>
+<script type="text/template">
+<small>template.php</small>
 ```php
 function THEME_preprocess_block(&$vars) {
-  // If statement with logic...
   $vars['theme_hook_suggestions'][] =
     'block__bean__' . $vars['elements']['bean'];
-  // Close
 }
 ```
-<small>Allows us to use block--bean--bean-type.tpl.php</small>
+<small>Enables block--bean--bean-type.tpl.php</small>
 </script>
 
 						</div>
 						<div class="block--right block--d8" data-markdown>
+<script type="text/template">
+<small>HOOK_theme_suggestions_HOOK<br><em>(only works in modules)</em></small>
 ```php
-HOOK_theme_suggestions_HOOK
-eg. menu_block_theme_suggestions_block(array $variables)
-(only works in modules)
-
-HOOK_theme_suggestions_HOOK_alter()
-eg. basic_theme_suggestions_block_alter(
-  array &$suggestions, array $variables)
-(works in modules or themes).
+function MODULE_theme_suggestions_HOOK(array $variables) { }
 ```
+<small>HOOK_theme_suggestions_HOOK_alter<br><em>(works in modules &amp; themes)</em></small>
+```php
+function THEME_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  $block = $variables['elements'];
+  $blockType = $block['#configuration']['provider'];
+  if ($blockType == "block_content") {
+    $bundle = $block['content']['#block_content']->bundle();
+    $suggestions[] = 'block__' . $bundle;
+  }
+}
+```
+<small>Enables block--custom-block-type.html.twig</small>
 </script>
 						</div>
+						<aside class="notes">
+						  - THEME_prepreprocess_HOOK, html, page. block, etc
+						  - THEME_theme_suggestions_HOOK_alter
+					    </aside>
 
 					</section>
 				</section>
