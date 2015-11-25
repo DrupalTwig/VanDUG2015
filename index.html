@@ -134,27 +134,42 @@
 				</section>
 
 				<section data-background="lib/images/slide-bg-d8.png">
-					<h2>What we will be covering</h2>
-					<div class="block--left">
-						<dl>
-							<dt>THE PIPELINE</dt><dd><small></small></dd>
-							<dt>FILE CHANGES</dt><dd><small>Name changes and the new info file</small></dd>
-							<dt>BASE THEMES</dt><dd><small>Classy, Stable &amp; Strak</small></dd>
-							<dt>TEMPLATES</dt><dd><small>php template > Twig!</small></dd>
-							<dt>LIBRARIES</dt><dd><small>Libraries and attached assets</small></dd>
-						</dl>
-					</div>
-					<div class="block--right">
-						<dl>
-    						<dt>BLOCKS</dt><dd><small>New deafult theme blocks</small></dd>
-							<dt>THEME HOOKS</dt><dd><small>New templates and suggestions</small></dd>
-							<dt>SMACSS &amp; BEM</dt><dd><small>Folder structure and naming convetions</small></dd>
-							<dt>DEBUG</dt><dd><small></small></dd>
-							<dt>AUTO-ESCAPING</dt><dd><small></small></dd>
-						</dl>
-					</div>
-				</section>
+                    
+                    <section>
+						<h2>What we will be covering</h2>
+						<div class="block--left">
+							<dl>
+								<dt>THE PIPELINE</dt><dd><small></small></dd>
+								<dt>FILE CHANGES</dt><dd><small>Name changes and the new info file</small></dd>
+								<dt>BASE THEMES</dt><dd><small>Classy, Stable &amp; Strak</small></dd>
+								<dt>TEMPLATES</dt><dd><small>php template > Twig!</small></dd>
+								<dt>LIBRARIES</dt><dd><small>Libraries and attached assets</small></dd>
+							</dl>
+						</div>
+						<div class="block--right">
+							<dl>
+	    						<dt>BLOCKS</dt><dd><small>New deafult theme blocks</small></dd>
+								<dt>THEME HOOKS</dt><dd><small>New templates and suggestions</small></dd>
+								<dt>SMACSS &amp; BEM</dt><dd><small>Folder structure and naming convetions</small></dd>
+								<dt>DEBUG</dt><dd><small></small></dd>
+								<dt>AUTO-ESCAPING</dt><dd><small></small></dd>
+							</dl>
+						</div>
+					</section>
 
+					<section>
+						<h2>Conventions</h2>
+						<p>Uppercase words are replaced as follows:</p>
+							<dl class="item-list">
+								<dt>THEME</dt>
+								<dd>Name of your theme <br><small>eg. basic/omega/custom_theme</small></dd>
+								<dt>MODULE</dt>
+								<dd>Name of your module <br><small>eg. panels/context/custom_module</small></dd>
+								<dt>HOOK</dt>
+								<dd>Name of a theme hook aka template file. <br><small>eg. field/page/node/item_list</small></dd>
+							</dl>
+					</section>
+				</section>
 
 				<!-- Section: Pipeline -->
 				<section data-background="lib/images/slide-bg-d8-jp.png">
@@ -232,12 +247,11 @@ regions[content] = Content
 regions[footer] = Footer
 
 ; Stylesheets
-stylesheets[all][] = css/default.css
+stylesheets[all][] = css/style.css
 stylesheets[print][] = css/print.css
+
 ; Scripts
 scripts[] = js/build/scripts.js
-
-settings[basic_tabs] = 1
 </code></pre>
 						</div>
 						<div class="block--right block--d8">
@@ -256,10 +270,7 @@ regions:
 
 # Scripts & Styles
 libraries:
-  - basic/base
-
-settings:
-  basic_tabs: 1
+  - basic/global
 </code></pre>
 						</div>
 
@@ -397,7 +408,7 @@ For Drupal's classes and markup.
 </code></pre>
 
 						</div>
-						<small>Strings {{ }}, Operations {% %}, Filters |, Comments {# #}</small>
+						<small>Strings {{ }}, Operations {% %}, Filters | &amp; Comments {# #}</small>
 						<aside class="notes">
 						3 types of markup: (1) Mustache brackets {{ }} redner content, like print render. (2) Mustache + % contain some sort of logic. (3) Mustache + # contains comments. Also Filtes: some argument to apply to the text you are rendering.
 						</aside>
@@ -476,15 +487,36 @@ $variables['my_attributes'] = $attributes;
 ```twig
 <div{{ my_attributes }}>
 <div{{ my_attributes
-	.addClass('yellow')
-	.removeClass('red')
-	.setAttribute('id', 'full-stop')|without('checked') }}>
+  .addClass('yellow')
+  .removeClass('red')
+  .setAttribute('id', 'full-stop') }}>
 <input{{ my_attributes.checked }}>
 ```
 </script>
 						</div>
 					</section>
 
+<section data-markdown>
+<script type="text/template">
+```
+
+@TODO Do's and don't of attributes
+<div{{ attributes }}></div>
+<div></div>
+<div {{ attributes }}></div>
+<div ></div>
+
+<div {{ my_attributes.addClass() }}></div>
+<div{{ attributes }}></div>
+<div{{ title_attributes }}></div>
+<div{{ content_attributes }}></div>
+
+<div{% set attrs = html_attributes(content_attributes) %}></div>
+
+```
+</script>
+
+</section>
 				</section>
 
 
@@ -498,28 +530,40 @@ $variables['my_attributes'] = $attributes;
 					</section>
 					<section>
 						<h2>Libraries</h2>
-						<div class="block--left" data-markdown>
+						<div class="block--left block--d7" data-markdown>
+						<small>THEME.info.yml</small>
+<script type="text/template">
+```
+; Stylesheets
+stylesheets[all][] = css/style.css
+stylesheets[print][] = css/print.css
+
+; Scripts
+scripts[] = js/build/scripts.js
+```
+</script>
+						</div>
+						<div class="block--right block--d8" data-markdown>
 						<small>THEME.info.yml</small>
 <script type="text/template">
 ```
 # Scripts & Styles
 libraries:
-  - basic/base
+  - THEME/global
 ```
 </script>
 						</div>
-						<div class="block--right" data-markdown>
+						<div class="block--right block--d8" data-markdown>
 						<small>THEME.libraries.yml</small>
 <script type="text/template">
 ```
-base:
-  version: VERSION
+global:
   css:
-	theme:
-	  css/style.css: {}
-	  css/print.css: { media: print }
+    theme:
+      css/style.css: {}
+      css/print.css: { media: print }
   js:
-	js/modernizr.js: {}
+    js/modernizr.js: {}
 ```
 </script>
 						</div>
@@ -532,10 +576,10 @@ base:
 						<div class="block--d7" data-markdown>
 <script type="text/template">
 ```
-function MYMODULE_page_build(&$page) {
-  $path = drupal_get_path('module', 'mymodule');
-  drupal_add_css($path . '/css/mymmodule.css');
-  drupal_add_js($path . '/js/mymodule.js');
+function MODULE_page_build(&$page) {
+  $path = drupal_get_path('module', 'MODULE');
+  drupal_add_css($path . '/MODULE.css');
+  drupal_add_js($path . '/MODULE.js');
   drupal_add_library('system', 'jquery.bbq');
 }
 ```
@@ -547,35 +591,33 @@ function MYMODULE_page_build(&$page) {
 					</section>
 					<section>
 						<h2>Libraries</h2>
-						<div class="block--left block--d8" data-markdown>
+						<div class="block--left" data-markdown>
 <script type="text/template">
 <small>THEME.info.yml</small>
 ```
 # Scripts & Styles
 libraries:
-  - basic/base
-  - basic/bxslider
+  - THEME/global
+  - THEME/bxslider
 ```
 </script>
 						</div>
 
-                        <div class="block--right block--d8" data-markdown>
+                        <div class="block--right" data-markdown>
 <script type="text/template">
 <small>THEME.libraries.yml</small>
 ```
-base:
-  version: VERSION
+global:
   css:
-	theme:
-	  css/style.css: {}
-	  css/print.css: { media: print }
+    theme:
+      css/style.css: {}
+      css/print.css: { media: print }
 bxslider:
-  version: VERSION
   css:
-	theme:
-	  css/bxslider.css: {}
+    theme:
+      css/bxslider.css: {}
   js:
-	js/bxslider.js: {}
+    js/bxslider.js: {}
   dependancies:
     - core/jquery
 ```
@@ -724,17 +766,29 @@ And on all render arrays like D7
 						<div class="block--left block--d7" data-markdown>
 							in your ```THEME_prepreprocess_HOOK```
 							<script type="text/template">
+              <small>template.php</small>
 ```php
-$variables['theme_hook_suggestions'][] = 'page__peanuts';
+function THEME_preprocess_block(&$vars) {
+  // If statement with logic...
+  $vars['theme_hook_suggestions'][] =
+    'block__bean__' . $vars['elements']['bean'];
+  // Close
+}
 ```
+<small>Allows us to use block--bean--bean-type.tpl.php</small>
 </script>
+
 						</div>
 						<div class="block--right block--d8" data-markdown>
 ```php
 HOOK_theme_suggestions_HOOK
-mymodule_theme_suggestions_block(array $variables) (only works in MODULES)
+eg. menu_block_theme_suggestions_block(array $variables)
+(only works in modules)
+
 HOOK_theme_suggestions_HOOK_alter()
-THEME_theme_suggestions_block(array &$suggestions, array $variables) (only works in MODULES or THEME).
+eg. basic_theme_suggestions_block_alter(
+  array &$suggestions, array $variables)
+(works in modules or themes).
 ```
 </script>
 						</div>
@@ -765,8 +819,7 @@ THEME_theme_suggestions_block(array &$suggestions, array $variables) (only works
 <script type="text/template">
 <small>THEME.libraries.yml</small>
 ```
-base:
-  version: VERSION
+global:
   css:
     base:
       css/normalize.css: {}
@@ -830,6 +883,13 @@ base:
 					<section>
 						<h2>Source Output</h2>
 						<img src="lib/images/twig-debug-output.png" alt="">
+
+						dump()
+						devel module's kint()
+
+						drupal site:mode dev
+
+
 					</section>
 				</section>
 
@@ -838,19 +898,25 @@ base:
 				<section data-background="lib/images/slide-bg-d8-jp.png">
 					<section>
 						<h1>Auto-Escaping</h1>
+						<img src="lib/images/escape.jpg">
+
 					</section>
 					<section>
 						<h2>Auto-Escaping</h2>
-						<small>The user decides to set his first name to<br>
-						<code class="html">&lt;script&gt;alert(&apos;I CAN HAZ UR SITE&apos;)&lt;/script&gt;</code></small>
+						<small style="margin-bottom: 0; vertical-align: bottom;">The user decides to set his first name to:</small>
+						<pre><code class="html">&lt;script&gt;alert(&apos;I CAN HAZ UR SITE&apos;)&lt;/script&gt;</code></pre>
+
 						<div class="block--left block--d7">
 							<div data-markdown>
 								<script type="text/template">
 ```php
 <?php
 global $user;
-$user_wrapper = entity_metadata_wrapper('user', $user->uid);
-$name = $wrapper->field_first_name->value();
+$account = entity_metadata_wrapper(
+  'user', $user->uid);
+$name = $account
+  ->field_first_name
+  ->value;
 ?>
 First name: <?php print $name ?>!
 ```
@@ -876,24 +942,63 @@ First name: <?php print $name ?>!
 ```
 								</script>
 							</div>
-							<div class="fragment">
-							OR if you need the markup or know it's previously sanitized.
-
-								<div data-markdown><script type="text/template">
-```php
-// Wrapped in some object that implements MarkupInterface.
-$variables['first_name'] = Markup::create($user->field_first_name->value);
-// Or a render array (this will implicitly XSS admin filter and is recommeneded.)
-$variables['first_name'] = ['#markup' => $user->field_first_name->value];
-```
-```twig
-{# Explicitly unescaped! #}
-{{ first_name }}
+							<div data-markdown class="fragment">>
+								<script type="text/template">
+```html
+&lt;script&gt;alert(&#039;I CAN HAZ
+ UR SITE&#039;)&lt;/script&gt;
 ```
 								</script>
 							</div>
+
+						</div>
+
+
+					</section>
+					<section>
+						<h2>Un-escaping</h2>
+
+
+
+						<small>You need the variable's markup or know it's previously sanitized user input.</small>
+						<div class="block--left">
+							<img src="lib/images/unescape.jpg">
+						</div>
+						<div class="block--right block--d8">
+							<div  class="fragment">
+								<div data-markdown>
+<script type="text/template">
+```php
+// Wrapped in some object that
+// implements MarkupInterface.
+$variables['first'] = Markup::create(
+  $user->field_first_name->value);
+// Or a render array (this will
+// implicitly XSS admin filter
+// and is recommeneded.)
+$variables['first'] = [
+  '#markup' => $user->field_first_name
+    ->value
+];
+```
+```twig
+{# Explicitly unescaped! #}
+{{ first }}
+```
+</script>
+								</div>
+								<div class="fragment" data-markdown>
+<script type="text/template">
+
+```twig
+{# Not recommended but possible, too #}
+{{ user.field_first_name.value|raw }}
+```
+</script>
+								</div>
 							</div>
 						</div>
+
 
 					</section>
 				</section>
