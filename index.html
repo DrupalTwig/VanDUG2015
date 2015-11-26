@@ -573,7 +573,7 @@ $variables['my_attributes'] = $attributes;
 
 				<!-- Section: Libraries -->
 				<section data-background="lib/images/slide-bg-d8.png">
-					<section>
+					<section data-background="lib/images/libraries.jpg">
 						<h1>Libraries</h1>
 						<aside class="notes">
 						Relate this to the concept of the D7 libraries folder. We can now allow D8 themes to use this.
@@ -913,11 +913,58 @@ global:
 						</h2>
 						<div class="fragment" data-markdown>
 <script type="text/template">
+<small>Naming convertions for your components</small>
 ```
 <div class="block-name__elem-name--mod-name">
 ```
 </script>
                         </div>
+
+						<aside class="notes">
+							- Block, Element, Modifier
+							- In drupal context, for naming components
+						</aside>
+					</section>
+<section>
+				        <h2>CEM</h2>
+						<div class="block--left block--d7" data-markdown>
+<script type="text/template">
+<small>Main menu</small>
+```
+xxx
+```
+</script>
+						</div>
+
+						<div class="block--right block--d8" data-markdown>
+<script type="text/template">
+<small>Main menu</small>
+```
+xxx
+```
+</script>
+						</div>
+
+            <div class="fragment">
+						<div class="block--left" data-markdown>
+<script type="text/template">
+<small>Vertical Tabs</small>
+```
+xxx
+```
+</script>
+						</div>
+
+						<div class="block--right" data-markdown>
+<script type="text/template">
+<small>Vertical Tabs</small>
+```
+<div class="vertical-tabs">
+</div>
+```
+</script>
+						</div>
+					  </div>
 
 						<p class="fragment"><small>Read more: <a href="https://en.bem.info/">https://en.bem.info/</a></small></p>
 						<aside class="notes">
