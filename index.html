@@ -180,7 +180,7 @@
 
 				<!-- Section: Pipeline -->
 				<section data-background="lib/images/slide-bg-d8-jp.png">
-					<section data-background="lib/images/slide-bg-d8-jp-pipeland.jpg">
+					<section data-background="lib/images/slide-bg-d8-jp-pipeline.jpg">
 						<h1>The Pipeline</h1>
 					</section>
 					<section>
@@ -330,7 +330,7 @@ libraries:
 
 				<!-- Section: Base Themes -->
 				<section data-background="lib/images/slide-bg-d8-jp.png">
-					<section>
+					<section data-background="lib/images/slide-bg-d8-jp-base.jpg">
 						<h1>Base Themes</h1>
 					</section>
 					<section>
@@ -365,7 +365,7 @@ For Drupal's classes and markup.
 
 				<!-- Section: Templates -->
 				<section data-background="lib/images/slide-bg-d8.png">
-					<section data-background="lib/images/slide-bg-d8-jp.png">
+					<section data-background="lib/images/slide-bg-d8-jp-template.jpg">
 						<h1>Templates</h1>
 					</section>
 					<section data-background="lib/images/slide-bg-d8-jp.png">
@@ -1020,13 +1020,13 @@ xxx
 							- Block, Element, Modifier
 							- In drupal context, for naming components
 						</aside>
-					</sAection>
+					</section>
 				</section>
 
 
 				<!-- Section: Debug -->
-				<section data-background="lib/images/slide-bg-d8-jp-debug.jpg">
-					<section>
+				<section data-background="lib/images/slide-bg-d8-jp.png">
+					<section data-background="lib/images/slide-bg-d8-jp-debug.jpg">
 						<h1>Debug</h1>
 					</section>
 					<section>
@@ -1039,23 +1039,54 @@ xxx
 					<section>
 						<h2>Source Output</h2>
 						<img src="lib/images/twig-debug-output.png" alt="">
+					</section>
+					<section>
+						<h2>dump()</h2>
+							<div data-markdown>
+								<script type="text/template">
+```twig
+{{ dump(user) }}
+```
+		</script></div>
+<img src="lib/images/dump-user.png" alt="">
 
-						dump()
-						devel module's kint()
+					</section>
 
-						drupal site:mode dev
+										<section>
+						<h2>kint()</h2>
+							<div data-markdown>
+								<script type="text/template">
+```twig
+{# devel sub modules kint #}
+{{ kint(user) }}
+```
+		</script></div>
+<img src="lib/images/kint-user.png" alt="">
+
+					</section>
+
+					<section>
+						<h2>Drupal Console</h2>
+							<div data-markdown>
+								<script type="text/template">
+```
+drupal site:mode dev
+```
+		</script></div>
+		<img src="lib/images/console-global.gif" alt="">
+
+
 
 
 					</section>
+
 				</section>
 
 
 				<!-- Section: Auto-Escaping -->
 				<section data-background="lib/images/slide-bg-d8-jp.png">
-					<section>
+					<section data-background="lib/images/slide-bg-d8-jp-escape.jpg">
 						<h1>Auto-Escaping</h1>
-						<img src="lib/images/escape.jpg">
-
 					</section>
 					<section>
 						<h2>Auto-Escaping</h2>
@@ -1111,35 +1142,33 @@ First name: <?php print $name ?>!
 
 
 					</section>
+					<section data-background="lib/images/slide-bg-d8-jp-unescape.jpg">
+						<h1>Un-escaping</h1>
+
+					</section>
 					<section>
 						<h2>Un-escaping</h2>
-
-
-
 						<small>You need the variable's markup or know it's previously sanitized user input.</small>
-						<div class="block--left">
-							<img src="lib/images/unescape.jpg">
-						</div>
-						<div class="block--right block--d8">
-							<div  class="fragment">
+
+						<div class="block--d8">
+							<div>
 								<div data-markdown>
 <script type="text/template">
 ```php
-// Wrapped in some object that
-// implements MarkupInterface.
-$variables['first'] = Markup::create(
-  $user->field_first_name->value);
-// Or a render array (this will
-// implicitly XSS admin filter
-// and is recommeneded.)
+// Wrapped in some object that implements MarkupInterface.
+$variables['first'] = Markup::create($user->field_first_name->value);
+// t() also implements MarkupInterface.
+$variables['last'] = t('<span>@last</span>', [
+  '@last' => $user->field_last_name->value,
+]);
+// Or a render array (Implicitly XSS admin filtered and is recommeneded.)
 $variables['first'] = [
-  '#markup' => $user->field_first_name
-    ->value
+  '#markup' => $user->field_first_name->value
 ];
 ```
 ```twig
 {# Explicitly unescaped! #}
-{{ first }}
+{{ first }} {{ last }}
 ```
 </script>
 								</div>
