@@ -547,25 +547,44 @@ $variables['my_attributes'] = $attributes;
 						</div>
 					</section>
 
-					<section data-markdown data-background="lib/images/slide-bg-d8-jp.png">
-<script type="text/template">
-<h2>Attributes</h2>
-<small>Do's and Don'ts</small>
-```
+					<section data-background="lib/images/slide-bg-d8-jp.png">
+						<h2>Attributes</h2>
+						<div class="">
+							<p>Do's</p>
+							<div data-markdown>
+								<script type="text/template">
+```twig
 <div{{ attributes }}></div>
 <div></div>
+
+<div class="{{ attributes.class }}"{{ attributes|without('class') }}></div>
+<div class="bow ties" id="are-cool"></div>
+
+<div id="{{ attributes.id }}-MOAR"{{ attributes|without('id') }}></div>
+<div id="some-MOAR"></div>
+```
+								</script>
+							</div>
+						</div>
+						<div class="">
+							<p>Don'ts</p>
+							<div data-markdown>
+								<script type="text/template">
+```twig
 <div {{ attributes }}></div>
 <div ></div>
 
-<div {{ my_attributes.addClass() }}></div>
-<div{{ attributes }}></div>
-<div{{ title_attributes }}></div>
-<div{{ content_attributes }}></div>
+<div class="{{ attributes.class }}"{{ attributes }}></div>
+<div class="stetsons" class="stetsons" id="are-cool"></div>
 
-<div{% set attrs = html_attributes(content_attributes) %}></div>
-
+<div{{ attributes.id }}{{ attributes|without('id') }}></div>
+<divsome-MOAR></div>
 ```
-</script>
+								</script>
+							</div>
+
+						</div>
+
 
 					</section>
 				</section>
