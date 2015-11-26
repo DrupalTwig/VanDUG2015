@@ -79,6 +79,12 @@
 				color: rgba(255,255,255,0.25);
 			}
 
+			.clearfix::after {
+				display: table;
+				clear: both;
+				content: '';
+			}
+
 		</style>
 
 		<!--[if lt IE 9]>
@@ -338,28 +344,42 @@ libraries:
 						<img src="lib/images/d8-base-themes.png" alt="Base Themes">
 					</section>
 					<section>
-
-<div data-markdown>
+						<div class="clearfix">
+							<div style="width: 70%; float: left">
+								<div data-markdown>
 ### Opt-out (core aka Wild West)
 ```
 base theme: false
 ```
-e.g. Stark and Stable
-</div>
-<div class="fragment" data-markdown>
+								</div>
+								<small>e.g. Stark and Stable</small>
+							</div>
+							<img src="lib/images/wild-west.png" style="width: 25%; float: right;" alt="">
+						</div>
+						<div class="fragment clearfix">
+							<div style="width: 70%; float: left">
+								<div data-markdown>
 ### The default
 ```
 base theme: stable
 ```
-Default of any theme that doesn't opt-out and Classy.
-</div>
-<div class="fragment" data-markdown>
+								</div>
+								<small>Default of any theme that doesn't opt-out and Classy.</small>
+							</div>
+							<img src="lib/images/stable.png" style="width: 25%; float: right;" alt="">
+						</div>
+						<div class="fragment clearfix">
+							<div style="width: 70%; float: left">
+								<div data-markdown>
 ###Bartik & Seven
 ```
 base theme: classy
 ```
-For Drupal's classes and markup.
-</div>
+								</div>
+								<small>For Drupal's classes and markup.</small>
+							</div>
+							<img src="lib/images/classy.gif" style="width: 25%; float: right;" alt="">
+						</div>
 					</section>
 				</section>
 
