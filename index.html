@@ -706,7 +706,7 @@ bxslider:
 <script type="text/template">
 <small>NODE.html.twig</small>
 ```
-{{ attach_library('basic/bxslider') }}
+{{ attach_library('THEME/bxslider') }}
 ```
 </script>
 						</div>
@@ -720,6 +720,49 @@ bxslider:
 
 Attach the assets to the elements which need them.
 
+
+
+						<div class="block--left block--d7" data-markdown>
+<script type="text/template">
+```
+$render_array = array(
+  '#markup' => '<strong>bad</strong>',
+  '#attached' => array(
+    'library' => array(
+      array('system', 'jquery.cookie'),
+      array('MODULE', 'library_name'),
+    ),
+  ),
+);
+```
+</script>
+						</div>
+						<div class="block--right block--d8 fragment" data-markdown>
+
+<script type="text/template">
+```
+$render_array = [
+  '#markup' => '<strong>bad</strong>',
+  '#attached' => [
+    'library' => [
+      'core/modernizr',
+      'MODULE/library_name',
+      'THEME/bxslider',
+    ],
+  ],
+];
+```
+</script>
+
+						</div>
+
+
+					</section>
+					<section data-background="lib/images/slide-bg-d8-jp.png">
+						<h2>#attached Assets</h2>
+
+<p>Ways to attach globally.</p>
+
 						<div class="block--left block--d7" data-markdown>
 <script type="text/template">
 ```
@@ -728,6 +771,7 @@ hook_page_alter()
 ```
 </script>
 						</div>
+
 						<div class="block--right block--d8" data-markdown>
 <script type="text/template">
 ```
@@ -739,30 +783,7 @@ hook_page_bottom()
 </script>
 						</div>
 
-
 						<small>@see https://www.drupal.org/node/2357755</small>
-						<div class="block--left block--d7 fragment" data-markdown>
-<script type="text/template">
-```
-
-@TODO needs examples.
-
-$render_array = array('#attached' => array());
-```
-</script>
-						</div>
-						<div class="block--right block--d8 fragment" data-markdown>
-<script type="text/template">
-```
-On preprocess Only in D8
- $variables['#attached']
-And on all render arrays like D7
-```
-
-</script>
-						</div>
-
-
 					</section>
 				</section>
 
@@ -999,7 +1020,7 @@ xxx
 							- Block, Element, Modifier
 							- In drupal context, for naming components
 						</aside>
-					</section>
+					</sAection>
 				</section>
 
 
