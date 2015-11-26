@@ -508,20 +508,26 @@ For Drupal's classes and markup.
 						<div class="block--left block--d7" data-markdown>
 							<script type="text/template">
 ```php
-$classes = array(
-  'list',
-  'of',
-  'classes',
-);
-$classes = 'list of classes';
-$attributes = ' class="some--bem"';
 $attributes_array = array(
-  'class' => $classes
+  'checked' => 'checked',
+  'id' => 'stop',
+  'class' => array('red', 'blue'),
 );
-
+// Process layer, the flattening.
+$attributes
+  = drupal_attributes($attributes_array);
 ```
 ```php
-<div<?php print drupal_attributes($attirbutes); ?>>
+<div<?php print $attirbutes ?>>
+<?php
+$extra = array('id' => 'full-stop',
+  'class' => array('blue', 'yellow'),
+);
+$new = array_merge($attributes_array,
+  $extra)
+?>
+<div<?php
+  print drupal_attributes($new) ?>>
 ```
 </script>
 						</div>
@@ -533,15 +539,18 @@ $attributes = new Attribute([
   'id' => 'stop',
   'class' => ['red', 'blue'],
 ]);
-$variables['my_attributes'] = $attributes;
 ```
 ```twig
-<div{{ my_attributes }}>
-<div{{ my_attributes
+<div{{ attributes }}>
+<div{{ attributes
   .addClass('yellow')
   .removeClass('red')
   .setAttribute('id', 'full-stop') }}>
-<input{{ my_attributes.checked }}>
+```
+<p>Results</p>
+```html
+<div checked id="stop" class="red blue">
+<div checked id="full-stop" class="blue yellow">
 ```
 </script>
 						</div>
