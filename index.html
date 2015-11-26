@@ -134,7 +134,7 @@
 				</section>
 
 				<section data-background="lib/images/slide-bg-d8.png">
-                    
+
                     <section>
 						<h2>What we will be covering</h2>
 						<div class="block--left">
@@ -148,7 +148,7 @@
 						</div>
 						<div class="block--right">
 							<dl>
-	    						<dt>BLOCKS</dt><dd><small>New deafult theme blocks</small></dd>
+								<dt>BLOCKS</dt><dd><small>New deafult theme blocks</small></dd>
 								<dt>THEME HOOKS</dt><dd><small>New templates and suggestions</small></dd>
 								<dt>SMACSS &amp; BEM</dt><dd><small>Folder structure and naming convetions</small></dd>
 								<dt>DEBUG</dt><dd><small></small></dd>
@@ -159,7 +159,10 @@
 
 					<section>
 						<h2>Conventions</h2>
+
 						<p>Uppercase words are replaced as follows:</p>
+						<div class="block--left">
+
 							<dl class="item-list">
 								<dt>THEME</dt>
 								<dd>Name of your theme <br><small>eg. basic/omega/custom_theme</small></dd>
@@ -168,12 +171,16 @@
 								<dt>HOOK</dt>
 								<dd>Name of a theme hook aka template file. <br><small>eg. field/page/node/item_list</small></dd>
 							</dl>
+						</div>
+						<div class="block--right">
+							<img src="lib/images/conventions.jpg" alt="">
+						</div>
 					</section>
 				</section>
 
 				<!-- Section: Pipeline -->
 				<section data-background="lib/images/slide-bg-d8-jp.png">
-					<section>
+					<section data-background="lib/images/slide-bg-d8-jp-pipeland.jpg">
 						<h1>The Pipeline</h1>
 					</section>
 					<section>
@@ -462,18 +469,18 @@ For Drupal's classes and markup.
 						<h2>Twig Syntax</h2>
 						<div class="block--left">
 						<small>Concatenation (~)</small>
-<pre><code data-trim class="twig">				
+<pre><code data-trim class="twig">
 {% set greeting = 'Hello ' %}
-{% set name = 'Drupalists' %}
+{% set name = 'Drupalistas' %}
 
-{{ greeting ~ name|lower }}  
+{{ greeting ~ name|lower }}
 
-{# Hello drupalists #}
+{# Hello drupalistas #}
 </code></pre>
 						</div>
 						<div class="block--right">
 						<small>Whitespace Control (-)</small>
-<pre><code data-trim class="twig">				
+<pre><code data-trim class="twig">
 {% set value = 'no spaces' %}
 {#- No leading/trailing whitespace -#}
 {%- if true -%}
