@@ -697,8 +697,8 @@ function MODULE_page_build(&$page) {
 # Scripts & Styles
 libraries:
   - THEME/global
-  - THEME/bxslider
 ```
+<small>Add libraries that are required on all pages</small>
 </script>
 						</div>
 
@@ -720,6 +720,7 @@ bxslider:
   dependancies:
     - core/jquery
 ```
+<small>Define additional libraries that will be required on an as needed basis</small>
 </script>
 						</div>
 						<div class="block--left fragment" data-markdown>
@@ -728,6 +729,7 @@ bxslider:
 ```
 {{ attach_library('THEME/bxslider') }}
 ```
+<small>Attach library to your templates so they only load when required</small>
 </script>
 						</div>
 						<aside class="notes">
